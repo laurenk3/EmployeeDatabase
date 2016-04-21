@@ -1,11 +1,16 @@
 package commrhardman23.httpsgithub.employeedatabase;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.net.ContentHandler;
 
 public class EmployeeDatabaseInterface extends AppCompatActivity {
 
@@ -30,9 +35,10 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
 
     /**
      * insertData adds elements to the Employee database using information given by the user
+     *
      * @param vw is the button the method is associated with
      */
-    private void insertData(View vw){
+    public void insertData(View vw) {
 
         /**
          * 1. Create a new EmployeeDatabaseHelper variable. You will need to use the following call:
@@ -42,31 +48,64 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
          * 4. Get a Writable Database reference using the variable name db (Remember your
          *    try-catch block. The if-else statement that follows should also go in your try block).
          */
+        EmployeeDatabaseHelper employeeDatabaseHelper = new EmployeeDatabaseHelper(this, null, null, 0);
+        SQLiteDatabase db;
+        String name;
+        String position;
+        String employeeNum;
+        String wage;
+        ContentValues addedContent;
 
-        if(edtxtName.getText().length() == 0 || edtxtPosition.getText().length() == 0 ||
-                edtxtEmployeeNum.getText().length() == 0 || edtxtWage.getText().length() == 0){
+        try {
+            db = employeeDatabaseHelper.getWritableDatabase();
+            if (edtxtName.getText().length() == 0 || edtxtPosition.getText().length() == 0 ||
+                    edtxtEmployeeNum.getText().length() == 0 || edtxtWage.getText().length() == 0) {
 
-            txtvwResult.setText("You must enter all values to add an element!");
+                txtvwResult.setText("You must enter all values to add an element!");
 
-        } else {
+                try {
+                } catch (SQLiteException e) {
+                    txtvwResult.setText("The database was not found");
+                }
 
-            /**
-             * 1. Set each variable equal to the values from the EditTexts
-             * 2. put each value into the ContentValues variable
-             * 3. Call the EmployeeDatabaseHelper's insertElement method
-             * 4. Display that the element has been added successfully
-             */
+                if (edtxtName.getText().length() == 0 || edtxtPosition.getText().length() == 0 ||
+                        edtxtEmployeeNum.getText().length() == 0 || edtxtWage.getText().length() == 0) {
 
+                    txtvwResult.setText("You must enter all values to add an element!");
+
+                } else {
+
+                    ContentValues = employeeDatabaseHelper. edtxtName, edtxtPosition, edtxtEmployeeNum,edtxtWage;
+                     //* 1. Set each variable equal to the values from the EditTexts
+                     //* 2. put each value into the ContentValues variable
+                    // * 3. Call the EmployeeDatabaseHelper's insertElement method
+                    // * 4. Display that the element has been added successfully
+                    // */
+                    db = employeeDatabaseHelper.insertElement();
+                    txtvwResult.setText("The element has been added successfully");
+
+
+                }
+
+            }
         }
+        // i wasn't sure if by "set each variable equal to the values from the edittxts" meant to do it like below or if i had
+        // to do it a different way
+        String name = edtxtName;
+        String position = edtxtPosition;
+        String employeeNum = edtxtEmployeeNum;
+        String wage = edtxtWage;
 
-    }
+        employeeDatabaseHelper
 
-    /**
-     * searchOrDelete opens the new activity where the user will be able to search or delete entries
-     * in the Employee database
-     * @param vw is the button that is associated with this method
-     */
-    private void searchOrDelete(View vw){
+
+        /**
+         * searchOrDelete opens the new activity where the user will be able to search or delete entries
+         * in the Employee database
+         * @param vw is the button that is associated with this method
+         */
+
+    public void searchOrDelete(View vw) {
 
         Intent goToSearchDelete = new Intent(this, SearchDatabase.class);
 
@@ -83,4 +122,5 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
         txtvwResult.setText("");
 
     }
+ }
 }
