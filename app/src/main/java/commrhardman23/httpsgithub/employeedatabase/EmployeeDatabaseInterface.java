@@ -75,7 +75,7 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
 
                 } else {
 
-                    ContentValues = employeeDatabaseHelper. edtxtName, edtxtPosition, edtxtEmployeeNum,edtxtWage;
+                   // ContentValues = employeeDatabaseHelper. edtxtName, edtxtPosition, edtxtEmployeeNum,edtxtWage;
                      //* 1. Set each variable equal to the values from the EditTexts
                      //* 2. put each value into the ContentValues variable
                     // * 3. Call the EmployeeDatabaseHelper's insertElement method
@@ -91,10 +91,10 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
         }
         // i wasn't sure if by "set each variable equal to the values from the edittxts" meant to do it like below or if i had
         // to do it a different way
-        String name = edtxtName;
-        String position = edtxtPosition;
-        String employeeNum = edtxtEmployeeNum;
-        String wage = edtxtWage;
+       // String name = edtxtName;
+       // String position = edtxtPosition;
+       // String employeeNum = edtxtEmployeeNum;
+        //String wage = edtxtWage;
 
         employeeDatabaseHelper
 
