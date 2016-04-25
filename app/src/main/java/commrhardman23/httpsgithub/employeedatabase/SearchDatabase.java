@@ -48,7 +48,7 @@ public class SearchDatabase extends AppCompatActivity {
         String[] elementsToSearch;
         EmployeeDatabaseHelper employeeDatabaseHelper = new EmployeeDatabaseHelper(this, null, null, 0);
         SQLiteDatabase db;
-        Cursor searchCursor;
+        Cursor searchCursor = null;
 
 
         if (edtxtName.getText().length() != 0) {
@@ -178,7 +178,7 @@ public class SearchDatabase extends AppCompatActivity {
             }//display that the database was not found
         } catch (SQLiteException e) {
             txtvwResult.setText("The database was not found");
-        }
+        } searchCursor.close();
 
 
     }
@@ -200,7 +200,7 @@ public class SearchDatabase extends AppCompatActivity {
         String whereToDelete = "";
         String[] elementsToDelete;
         EmployeeDatabaseHelper employeeDatabaseHelper = new EmployeeDatabaseHelper(this, null, null, 0);
-        SQLiteDatabase db;
+        SQLiteDatabase db = null;
         int numRowsDeleted;
 
 
@@ -307,7 +307,8 @@ public class SearchDatabase extends AppCompatActivity {
 
         } catch (SQLiteException e){
             txtvwResult.setText("The database was not found");
-        }
+
+        } db.close ();
 
     }
 }

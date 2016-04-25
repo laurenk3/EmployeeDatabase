@@ -85,7 +85,7 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
                     txtvwResult.setText("The element has been added successfully");
 
 
-                }
+                } db.close ();
 
             }
         }
@@ -96,7 +96,7 @@ public class EmployeeDatabaseInterface extends AppCompatActivity {
        // String employeeNum = edtxtEmployeeNum;
         //String wage = edtxtWage;
 
-        employeeDatabaseHelper
+       // employeeDatabaseHelper
 
 
         /**
